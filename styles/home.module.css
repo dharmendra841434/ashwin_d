@@ -1,0 +1,10 @@
+.heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.setting {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
