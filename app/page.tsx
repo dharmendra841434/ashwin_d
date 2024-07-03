@@ -100,16 +100,16 @@ export default function Web() {
                 </div>
               </div>
               {isOpen && (
-                <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center pt-2 bg-black/40">
-                  <div className="rounded-md overflow-hidden z-30 bg-white h-[30%]  w-[90%] relative">
-                    <div className="flex flex-row justify-between p-2 bg-gray-200 ">
-                      <h4 className="font-medium ">Select facets</h4>
+                <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center bg-black/40">
+                  <div className=" overflow-hidden z-30 bg-white h-[100%]  w-[100%] relative">
+                    <div className="flex flex-row justify-between p-2 mt-1 border-t border-b border-purple-600 ">
+                      <h4 className="font-semibold ">Update facets</h4>
                       <MdClose
                         onClick={() => setIsOpen((prev) => !prev)}
                         className="text-lg cursor-pointer "
                       />
                     </div>
-                    <div className="px-1 overflow-y-scroll h-[90%] text-sm   ">
+                    <div className="px-1  h-[90%] text-sm   ">
                       {availablefacets?.map((item, index) => (
                         <div className="flex flex-row items-center my-1 ">
                           <CustomCheckBox
