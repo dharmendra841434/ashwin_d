@@ -10,10 +10,10 @@ import API from "@searchkit/api";
 const apiClient = API(
   {
     connection: {
-      host: "https://3.234.18.177:9200/",
+      host: process.env.NEXT_PUBLIC_ES_URL,
       auth: {
-        username: "elastic",
-        password: "I5225p8ZRyhfMJU3ICZM",
+        username: process.env.NEXT_PUBLIC_ES_USRNAME,
+        password: process.env.NEXT_PUBLIC_ES_PASSWORD,
       },
       withCredentials: false,
     },
