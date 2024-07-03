@@ -5,6 +5,10 @@ export const facets = [
   { title: "STATUS", key: "STATUS" },
 ];
 
+export const ref_Person_Facets = [
+  { title: "ADDRESS_TYPE", key: "ReferralPerson.Address.ADDR_TYPE" },
+];
+
 // { title: "REFERRAL_STATUS", key: "REFERRAL_STATUS" },
 //   {
 //     title: "ReferralPerson.Address.ADDR_TYPE",
