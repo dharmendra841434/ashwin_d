@@ -55,10 +55,11 @@ const Panel = ({ header, children }: any) => (
 );
 
 const Panel2 = ({ header, children }: any) => (
-  <div className="mt-5 panel">
-    <h5 className="font-semibold ">Referral Person</h5>
-    <div className="pl-5 ">
-      <h5 className="py-1 text-sm font-semibold ">{header}</h5>
+  <div className="mt-3 panel">
+    <div className="">
+      <h5 className="py-1 text-sm font-semibold uppercase ">
+        Referral Person {header}
+      </h5>
       {children}
     </div>
   </div>
