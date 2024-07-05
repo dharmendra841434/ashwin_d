@@ -12,3 +12,25 @@ export const availablefacets = [
   "PROGRAM_OFFICE",
   "REFERRAL_REASON",
 ];
+
+export const refPersonFacets = [
+  { title: "ADDRESS_TYPE", key: "ReferralPerson.Address.ADDR_TYPE" },
+  { title: "PROGRAM_TYPE", key: "ReferralPerson.PROGRAM_TYPE" },
+  { title: "CLIENT_STATUS", key: "ReferralPerson.CLIENT_STATUS" },
+  { title: "COUNTRY", key: "ReferralPerson.COUNTRY" },
+  {
+    title: "PERSON_ADDR_SOURCE_TYPE",
+    key: "ReferralPerson.PERSON_ADDR_SOURCE_TYPE",
+  },
+  { title: "STATE", key: "ReferralPerson.STATE" },
+  { title: "CASE_PARTY_ROLE", key: "ReferralPerson.CASE_PARTY_ROLE" },
+  { title: "EYE_COLOR", key: "ReferralPerson.EYE_COLOR" },
+  { title: "FILING_STATE", key: "ReferralPerson.FILING_STATE" },
+  { title: "FILING_CITY_NAME", key: "ReferralPerson.FILING_CITY_NAME" },
+  { title: "GENDER", key: "ReferralPerson.GENDER" },
+  { title: "HAIR_COLOR", key: "ReferralPerson.HAIR_COLOR" },
+  { title: "MARITAL_STATUS", key: "ReferralPerson.MARITAL_STATUS" },
+  { title: "MILITARY_BRANCH", key: "ReferralPerson.MILITARY_BRANCH" },
+  { title: "RACE_TYPE", key: "ReferralPerson.RACE_TYPE" },
+  { title: "VEHICLE_REG_STATE", key: "ReferralPerson.VEHICLE_REG_STATE" },
+];

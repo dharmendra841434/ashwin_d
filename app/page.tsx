@@ -16,12 +16,13 @@ import Client from "@searchkit/instantsearch-client";
 import { MdClose, MdOutlineSettings } from "react-icons/md";
 import style from "../styles/home.module.css";
 import { useEffect, useState } from "react";
-import { facets } from "@/utils/facetsOption";
+import { facets, ref_Person_Facets } from "@/utils/facetsOption";
 import CustomCheckBox from "../components/CustomCheckBox";
-import { availablefacets } from "@/utils/options";
+import { availablefacets, refPersonFacets } from "@/utils/options";
 import { AvailabilityDates } from "@/components/DateDemo";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import RefralPersonaFacets from "../components/RefralPersonaFacets";
 
 const searchClient = Client({
   url: "/api/search",
@@ -53,9 +54,22 @@ const Panel = ({ header, children }: any) => (
   </div>
 );
 
+const Panel2 = ({ header, children }: any) => (
+  <div className="mt-3 panel">
+    <div className="">
+      <h5 className="py-1 text-sm font-semibold uppercase ">
+        Referral Person {header}
+      </h5>
+      {children}
+    </div>
+  </div>
+);
+
 export default function Web() {
   const [isOpen, setIsOpen] = useState(false);
   const [facetsList, setFacetsList] = useState(facets);
+  const [referralPersonFacets, setReferralPersonFacets] =
+    useState(ref_Person_Facets);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [isApplyDateFilter, setIsApplyDateFilter] = useState(false);
@@ -71,6 +85,20 @@ export default function Web() {
   const toggleFacet = (title: string, key: string) => {
     setFacetsList((prevFacets) => {
       const index = prevFacets.findIndex((facet) => facet.title === title);
+
+      if (index === -1) {
+        // If the title does not exist, add the new facet
+        return [...prevFacets, { title: title, key: key }];
+      } else {
+        // If the title exists, remove the existing facet
+        return prevFacets.filter((facet) => facet.title !== title);
+      }
+    });
+  };
+
+  const toggleRef_Facet = (title: string, key: string) => {
+    setReferralPersonFacets((prevFacets) => {
+      const index = prevFacets.findIndex((facet) => facet?.title === title);
 
       if (index === -1) {
         // If the title does not exist, add the new facet
@@ -102,7 +130,7 @@ export default function Web() {
               {isOpen && (
                 <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center bg-black/40">
                   <div className=" overflow-hidden z-30 bg-white h-[100%]  w-[100%] relative">
-                    <div className="flex flex-row justify-between p-2 mt-1 border-t border-b border-purple-600 ">
+                    <div className="flex flex-row justify-between p-2 border-t border-b border-purple-600 ">
                       <h4 className="font-semibold ">Update facets</h4>
                       <MdClose
                         onClick={() => setIsOpen((prev) => !prev)}
@@ -127,7 +155,23 @@ export default function Web() {
                       <div className="pl-2 ">
                         <h3 className="font-medium ">Referral Person</h3>
                         <div className="pl-2 ">
-                          <div className="flex flex-row items-center my-1 ">
+                          {refPersonFacets?.map((item, index) => (
+                            <div
+                              key={index}
+                              className="flex flex-row items-center my-1 "
+                            >
+                              <CustomCheckBox
+                                isChecked={referralPersonFacets?.some(
+                                  (it) => it.title === item.title
+                                )}
+                                handleChecked={() => {
+                                  toggleRef_Facet(item?.title, item?.key);
+                                }}
+                              />
+                              <h3 className=" w-[4rem]">{item?.title}</h3>
+                            </div>
+                          ))}
+                          {/* <div className="flex flex-row items-center my-1 ">
                             <CustomCheckBox
                               isChecked={facetsList?.some(
                                 (it) =>
@@ -171,7 +215,7 @@ export default function Web() {
                               }}
                             />
                             <h3 className=" w-[4rem]">CLIENT_STATUS</h3>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -201,18 +245,14 @@ export default function Web() {
                   </div>
                 ))}
 
-                {/* <Panel header="FILTER BY DATES">
-                  <RangeInput attribute="ReferralPerson.HEIGHT_FEET_NUMB" />
-                </Panel> */}
+                {referralPersonFacets?.map((item, index) => (
+                  <div key={index}>
+                    <Panel2 header={item?.title}>
+                      <RefinementList attribute={item?.key} />
+                    </Panel2>
+                  </div>
+                ))}
               </DynamicWidgets>
-              {/* <Configure
-                numericRefinements={{
-                  END_VALIDITY_DTTM: {
-                    ">=": [Number(startDate)], // Filter items created after January 1, 2023
-                    // "<=": [Number(toDate)], // and before July 1, 2023
-                  },
-                }}
-              /> */}
 
               {isApplyDateFilter && (
                 <Configure
